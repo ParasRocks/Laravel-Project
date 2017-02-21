@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
@@ -13,7 +13,8 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        return view('Admin.users.index');
+        $users=User::all();
+        return view('Admin.users.index',compact('users'));
     }
 
     /**
@@ -23,7 +24,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        return "this is create";
+        return view('Admin.users.create');
     }
 
     /**
@@ -56,7 +57,7 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Admin.users.edit');
     }
 
     /**
