@@ -109,10 +109,8 @@ class AdminUsersController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         $user=User::findOrFail($id);
-        if(!$request->file('file'))
-        {
-          $input=$request->all()->except('file');
-        }
+
+        $input=$request->all();
 
         if($file=$request->file('file'))
         {

@@ -44,4 +44,15 @@ class User extends Authenticatable
     {
       return ucFirst($name);
     }
+    //for middleware
+    public function isAdmin()
+    {
+        if($this->role->name=="Administrator")
+        {
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
 }
