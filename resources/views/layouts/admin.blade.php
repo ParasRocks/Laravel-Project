@@ -136,9 +136,27 @@
 								</ul>
 							</li>
 							<li>
-								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-	 							   <p><i class="material-icons">person</i> {{Auth::user()->name}}</p>
-		 						</a>
+							@if(Auth::check())
+								<div class="dropdown">
+										<a href="#" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown">
+									    	<p style="font-size:14px;padding-top:5px;"><i class="material-icons">person</i> {{Auth::user()->name}} &nbsp;<b class="caret"></b></p>
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="{{ route('logout') }}"
+														onclick="event.preventDefault();
+																		 document.getElementById('logout-form').submit();">
+														<i class="material-icons">settings_power</i> Logout
+												</a>
+
+												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+														{{ csrf_field() }}
+												</form>
+											</li>
+											<li><a href="#"><i class="material-icons">person_pin</i>Profile</a></li>
+										</ul>
+									</div>
+								@endif
 							</li>
 						</ul>
 
