@@ -6,7 +6,7 @@
       <div class="seperator"></div>
   </div>
   <div>
-  {!! Form::open(['method'=>'post','action'=>'AdminUsersController@store','class'=>'col-md-10']) !!}
+  {!! Form::open(['method'=>'post','action'=>'AdminUsersController@store','class'=>'col-md-10','files'=>true]) !!}
 
       <div class="form-group label-floating is-empty col-md-6">
           {!! Form::label('name','Username') !!}
@@ -26,6 +26,17 @@
       <div class="form-group label-floating is-empty col-md-6">
           {!! Form::label('is_active','Status') !!}
           {!! Form::select('is_active',array(1=>'Active',0=>'Not Active'),0,['class'=>'form-control']) !!}
+      </div>
+      <div class="form-group is-fileinput col-md-6">
+            <input type="file" id="inputFile4" multiple="" name="file">
+            <div class="input-group">
+              <input type="text" readonly="" class="form-control" placeholder="Placeholder w/file chooser...">
+                <span class="input-group-btn input-group-sm">
+                  <button type="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">attach_file</i>
+                  </button>
+                </span>
+            </div>
       </div>
       <div class="form-group label-floating is-empty col-md-6">
           {!! Form::label('password','Password') !!}
