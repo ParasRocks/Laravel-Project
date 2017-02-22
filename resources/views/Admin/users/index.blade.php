@@ -2,7 +2,20 @@
 
 @section('content')
 <div>
-    <div class="card">
+@if(Session::has('deleted_user'))
+    <div class="alert alert-success">
+    <div class="container-fluid">
+    <div class="alert-icon">
+    <i class="material-icons">check</i>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true"><i class="material-icons">clear</i></span>
+    </button>
+    <b>Success Alert:</b> Yuhuuu! {{session('deleted_user')}}
+    </div>
+    </div>
+@endif
+<div class="card">
 	<div class="card-header" data-background-color="purple">
 		<h4 class="title">User Details</h4>
 		<p class="category">Hacking Project with some perople of diffrent roles.</p>

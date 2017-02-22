@@ -1,12 +1,13 @@
 @extends('Layouts.admin')
 
 @section('content')
-  <div>
-      <h1 style="width:500px;margin:auto;">Let's Create Users</h1>
+<div class="card row">
+  <div class="card-header" data-background-color="yellow">
+      <h3 class="title">Let's Create Users</h3>
       <div class="seperator"></div>
   </div>
-  <div class="col-md-10">
-  {!! Form::open(['method'=>'post','action'=>'AdminUsersController@store','class'=>'col-md-10','files'=>true]) !!}
+  <div class="card-content col-md-9">
+  {!! Form::open(['method'=>'post','action'=>'AdminUsersController@store','class'=>'','files'=>true]) !!}
 
       <div class="form-group label-floating is-empty col-md-6">
           {!! Form::label('name','Username') !!}
@@ -53,6 +54,11 @@
 
   {!! Form::close() !!}
   </div>
+  <div class="col-md-3 text-center">
+      <img src="/Photos/4.png" style="width:300px;height:300px;padding-right:40px;padding-left:-10px;">
+      <h3 style="margin-top:-40px" class="text-primary"> &nbsp;&nbsp;&nbsp;&nbsp;Hacking.<span class="text-warning">io</span></h3>
+  </div>
+</div>
   @include('includes.formError')
 
 @stop
