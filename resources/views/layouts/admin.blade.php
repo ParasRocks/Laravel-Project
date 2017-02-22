@@ -51,10 +51,15 @@
 	                    </a>
 	                </li>
 	                <li>
-	                    <a href="user.html">
-	                        <i class="material-icons">person</i>
-	                        <p>User Profile</p>
-	                    </a>
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+															<i class="material-icons">person</i>
+															<p>Users <b class="caret"></b></p>
+													</a>
+													<ul class="dropdown-menu">
+														<li><a href="{{route('users.index')}}">All Users</a></li>
+														<li class="divider"></li>
+														<li><a href="{{route('users.create')}}">Create User</a></li>
+													</ul>
 	                </li>
 	                <li>
 	                    <a href="table.html">
@@ -169,24 +174,24 @@
 </body>
 
 	<!--   Core JS Files   -->
-	<script src="../assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-	<script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="../assets/js/material.min.js" type="text/javascript"></script>
+	<script src="../../assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../../assets/js/material.min.js" type="text/javascript"></script>
 
 	<!--  Charts Plugin -->
-	<script src="../assets/js/chartist.min.js"></script>
+	<script src="../../assets/js/chartist.min.js"></script>
 
 	<!--  Notifications Plugin    -->
-	<script src="../assets/js/bootstrap-notify.js"></script>
+	<script src="../../assets/js/bootstrap-notify.js"></script>
 
 	<!--  Google Maps Plugin    -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
 	<!-- Material Dashboard javascript methods -->
-	<script src="../assets/js/material-dashboard.js"></script>
+	<script src="../../assets/js/material-dashboard.js"></script>
 
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-	<script src="../assets/js/demo.js"></script>
+	<script src="../../assets/js/demo.js"></script>
 
 	<script type="text/javascript">
     	$(document).ready(function(){

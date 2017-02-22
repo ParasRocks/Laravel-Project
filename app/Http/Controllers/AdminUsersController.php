@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
+use App\Photo;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateRequest;
 
@@ -38,9 +39,37 @@ class AdminUsersController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        User::create($request->all());
+        $input=$request->all();
+        //take all the input request to input vriable
 
-        return redirect('admin/users');
+        if($file=$request->file('file'))
+        //check if the file is exist or not!!
+        {
+            $name=time().$file->getClientOriginalName();
+            //modeification is donw with carbon
+            //the name of the file with current time and the client name it's cool.
+            $file->move('Photos',$name);
+            //store the file in the public/photo directory.
+            // the directory is automatically created.
+
+            $photo=Photo::create(['name'=>$name]);
+            //The photo is persistent in the photo table and return the refrence of the object is done.
+
+            $input['photo_id']=$photo->id;
+            //add extra column in the input field, the photo_id is stored in input['photo_id']
+            //now $input includes one more field is photo_id.
+
+        }
+
+        $input['password']=bcrypt($request->password);
+        //the password is encrypted and update the password field in the $input
+
+        User::create($input);
+        //the user instance create a user with all data
+
+        // return redirect('admin/users');
+        //redirect to the admin user section also do this route('name').
+        return redirect()->route('users.index');
         //return $request->file('file');
         //the file will produced a empty array
     }
