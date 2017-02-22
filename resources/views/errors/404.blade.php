@@ -1,2 +1,7 @@
-<h1>eroror</h1>
-<p>please go somewherew else</p>
+@extends('Layouts.app')
+
+@section('content')
+
+  <h1 class="text-center">Opps no page available</h1>
+
+@stop
