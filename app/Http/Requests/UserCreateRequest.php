@@ -14,6 +14,8 @@ class UserCreateRequest extends FormRequest
     public function authorize()
     {
         return true;
+        //make this public for all people anyone can add users now.
+        //If this return true then only the authorized user access this section
     }
 
     /**
@@ -30,6 +32,9 @@ class UserCreateRequest extends FormRequest
             'password' =>'required',
             'is_active' => 'required',
             'file'=>'required'
+            //this section where you place your validation logics and its so simple
+            //and the store method you must replace Request class with UserCreateRequest that you created and also don't forrget to include this
+
         ];
     }
 }

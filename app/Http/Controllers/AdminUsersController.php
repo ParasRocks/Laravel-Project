@@ -6,6 +6,7 @@ use App\Role;
 use App\Photo;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UsersEditRequest;
 
 class AdminUsersController extends Controller
 {
@@ -27,7 +28,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        $roles=Role::pluck('name','id')->all();
+        $roles=Role::pluck('name','id')->all(); //laravel 5.2 useses the lists function but now in laravel 5.4 lists is replace with pluck.
         return view('Admin.users.create',compact('roles'));
     }
 
@@ -93,7 +94,9 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        return view('Admin.users.edit');
+        $user = User::findOrFail($id);
+        $roles=  Role::pluck('name','id')->all();
+        return view('Admin.users.edit',compact('user','roles'));
     }
 
     /**
@@ -103,9 +106,28 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+        if(!$request->file('file'))
+        {
+          $input=$request->all()->except('file');
+        }
+
+        if($file=$request->file('file'))
+        {
+          $name=time().$file->getClientOriginalName();
+
+          $file->move('Photos',$name);
+
+          $photo=Photo::create(['name'=>$name]);
+
+          $input['photo_id']=$photo->id;
+        }
+        $user->update($input);
+
+        return redirect()->route('users.index');
+
     }
 
     /**

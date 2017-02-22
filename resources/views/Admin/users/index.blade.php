@@ -24,10 +24,13 @@
         @foreach($users as $user)
         <tr>
           <td>{{$user->id}}</td>
-          <td>{{$user->name}}</td>
+          <td><a href="{{route('users.edit',$user->id)}}">{{$user->name}}</a></td>
           <td>{{$user->email}}</td>
           <td>{{$user->role->name}}</td>
-          <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}"><b>{{$user->is_active ? "Active" : "Not Active"}}</b></td><td width="60" height="20"><img style="width:50px;height:50px" class="img-circle" src="{{$user->photo ? $user->photo->name : '/Photos/3.png'}}"><td>{{$user->created_at->diffForHumans()}}</td><td>{{$user->updated_at->diffForHumans()}}</td>
+          <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}"><b>{{$user->is_active ? "Active" : "Not Active"}}</b></td>
+          <td width="60" height="20"><img style="width:50px;height:50px" class="img-circle" src="{{$user->photo ? $user->photo->name : '/Photos/3.png'}}"></td>
+          <td>{{$user->created_at->diffForHumans()}}</td>
+          <td>{{$user->updated_at->diffForHumans()}}</td>
           <!-- {{$user->photo ? $user->photo->name : "Upload !!"}} this is check the condition if the user photo exist the is display the picture
           $user->photo check the user instance photo not !! provide any $user->photo_id //laravel automatically do this we just call the photo method and its return the photo instance. -->
         </tr>

@@ -39,4 +39,9 @@ class User extends Authenticatable
     {
       return $this->belongsTo('App\Photo');
     }
+
+    Public function getNameAttribute($name)
+    {
+      return ucFirst($name);
+    }
 }
