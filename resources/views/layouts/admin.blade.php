@@ -53,7 +53,7 @@
 	                <li>
 													<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 															<i class="material-icons">person</i>
-															<p>Users <b class="caret"></b></p>
+															<p>Users <b class="caret pull-right" style="margin-top:13px;"></b></p>
 													</a>
 													<ul class="dropdown-menu">
 														<li><a href="{{route('users.index')}}">All Users</a></li>
