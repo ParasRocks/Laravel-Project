@@ -8,11 +8,19 @@
     </div>
   <div class="card-content col-md-12">
   <div class="row">
-  {!! Form::model($user,['method'=>'PATCH','action'=>['AdminUsersController@update',$user->id],'class'=>'col-md-10','files'=>true]) !!}
-  <div class="col-md-3 col-md-offset-1">
+
+
+  <div class="col-md-3">
       <img src="{{$user->photo ? $user->photo->name : '/Photos/1.png'}}" class="img-responsive img-rounded img-bordered" style="background-color:#efefef;widht:150px;height:180px;">
+      {!! Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id] ]) !!}
+        <div class="form-group label-floating">
+            {!! Form::submit('Delete User',['class'=>'btn btn-danger col-md-12']) !!}
+        </div>
+      {!! Form::close() !!}
   </div>
-  <div class="col-md-8">
+
+  <div class="col-md-8 row col-md-offset-1">
+    {!! Form::model($user,['method'=>'PATCH','action'=>['AdminUsersController@update',$user->id],'class'=>'col-md-10','files'=>true]) !!}
       <div class="form-group label-floating is-empty col-md-6">
           {!! Form::label('name','Username') !!}
           {!! Form::text('name',null,['class'=>'form-control']) !!}
@@ -49,9 +57,9 @@
       <!-- there is an problem with the file input is that the file you are selected is not display on the input field -->
       <div class="form-group label-floating is-empty col-md-12">
           {!! Form::submit('Update Details',['class'=>'btn btn-success btn-lg col-md-6']) !!}
+          {!! Form::close() !!}
       </div>
   </div>
-  {!! Form::close() !!}
 </div>
   </div>
 </div>

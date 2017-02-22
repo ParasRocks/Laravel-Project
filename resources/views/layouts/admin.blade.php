@@ -137,8 +137,7 @@
 							</li>
 							<li>
 								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-	 							   <i class="material-icons">person</i>
-	 							   <p class="hidden-lg hidden-md">Profile</p>
+	 							   <p><i class="material-icons">person</i> {{Auth::user()->name}}</p>
 		 						</a>
 							</li>
 						</ul>
