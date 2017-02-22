@@ -26,7 +26,7 @@
         <tr>
           <td>{{$post->id}}</td>
           <td><a href="{{route('users.edit',$post->id)}}">{{$post->user->name}}</a></td>
-          <td>{{$post->category_id}}</td>
+          <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
           <td><img src="{{$post->photo ? $post->photo->name : '/photos/post.png'}}" style="width:50px;height:50px;"></td>
           <td>{{$post->title}}</td>
           <!-- <td width="60" height="20"><img style="width:50px;height:50px" class="img-circle" src="{{$post->photo ? $post->photo->name : '/Photos/3.png'}}"></td> -->

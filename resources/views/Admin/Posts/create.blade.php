@@ -21,7 +21,7 @@
         </div>
         <div class="form-group label-floating is-empty col-md-6">
             {!! Form::label('category_id','Category') !!}
-            {!! Form::select('category_id',array([''=>'option','1'=>'Bollywood']),1,['class'=>'form-control']) !!}
+            {!! Form::select('category_id',[''=> 'Choose categories']+$categories,null,['class'=>'form-control']) !!}
             <!-- $roles is an array that containes the pluck(lists) of all type of role in database? -->
         </div>
         <div class="form-group label-floating is-empty col-md-6">

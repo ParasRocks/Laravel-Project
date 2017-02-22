@@ -29,7 +29,8 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories=Category::pluck('name','id')->all();
+        return view('admin.posts.create',compact('categories'));
     }
 
     /**
