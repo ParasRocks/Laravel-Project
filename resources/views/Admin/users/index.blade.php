@@ -6,7 +6,7 @@
     <div class="col-md-10 table-responsive">
         <table class="table table-hover table-bordered">
           <tr>
-            <td>id</td><td>Name</td><td>Email</td><td>Role</td><td>Active</td><td>Created</td><td>Updated</td>
+            <td>id</td><td>Name</td><td>Email</td><td>Role</td><td>Status</td><td>Created</td><td>Updated</td>
           </tr>
           @if($users)
           @foreach($users as $user)
