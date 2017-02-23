@@ -9,6 +9,7 @@
 	</div>
 	<div class="card-content table-responsive">
     <div class="col-md-6">
+      <h3 class="">Add some categories there.</h3>
       {!! Form::open(['method'=>'post','action'=>'AdminCategoriesController@store','class'=>'form-inline']) !!}
 
           <div class="form-group label-floating is-empty col-md-5" style="padding-top:20px;">
@@ -20,20 +21,26 @@
 
       {!! Form::close() !!}
     </div>
-    <div class="col-md-6 jumbotron">
+    <div class="col-md-6">
         <table class="table table-hover">
     			<thead class="text-danger">
     				<th>Id</th>
     				<th>Caterogy Name</th>
     				<th>Created</th>
+            <th>Action</th>
     			</thead>
     			<tbody>
             @if($categories)
             @foreach($categories as $category)
     				<tr>
     					<td>{{$category->id}}</td>
-    					<td>{{$category->name}}</td>
+    					<td><a href="{{route('categories.edit',$category->id)}}">{{$category->name}}</a></td>
     					<td>{{$category->created_at}}</td>
+              <td>
+                  {!! Form::open(['method'=>'DELETE','action'=>['AdminCategoriesController@destroy',$category->id] ]) !!}
+                  {!! Form::submit('Delete',['class'=>'btn btn-danger btn-sm']) !!}
+                  {!! Form::close() !!}
+              </td>
     				</tr>
             @endforeach
             @endif
