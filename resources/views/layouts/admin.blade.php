@@ -62,16 +62,26 @@
 													</ul>
 	                </li>
 	                <li>
-	                    <a href="table.html">
-	                        <i class="material-icons">content_paste</i>
-	                        <p>Table List</p>
-	                    </a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="material-icons">report</i>
+												<p>Posts <b class="caret pull-right" style="margin-top:13px;"></b></p>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="{{route('posts.index')}}">All Posts</a></li>
+											<li class="divider"></li>
+											<li><a href="{{route('posts.create')}}">Create Post</a></li>
+										</ul>
 	                </li>
-	                <li>
-	                    <a href="typography.html">
-	                        <i class="material-icons">library_books</i>
-	                        <p>Typography</p>
-	                    </a>
+									<li>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="material-icons">category</i>
+												<p>Categories<b class="caret pull-right" style="margin-top:13px;"></b></p>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="{{route('categories.index')}}">Manage Categories</a></li>
+											<li class="divider"></li>
+											<li><a href="#">Something</a></li>
+										</ul>
 	                </li>
 	                <li>
 	                    <a href="icons.html">

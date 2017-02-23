@@ -9,15 +9,29 @@
       <h3 class="title">Some Changes on Post</h3>
       <p class='category'>Includes all the post of users</p>
     </div>
-    {!! Form::open(['method'=>'DELETE','action'=>['AdminPostsController@destroy',$post->id],'class'=>'col-md-6' ]) !!}
-      <div class="form-group label-floating col-md-12 pull-right">
-          {!! Form::submit('Delete Post',['class'=>'btn btn-danger col-md-3 pull-right btn-lg']) !!}
-      </div>
-    {!! Form::close() !!}
   </div>
   <div class="card-content">
     {!! Form::model($post,['method'=>'PATCH','action'=>['AdminPostsController@update',$post->id],'class'=>'','files'=>true]) !!}
-
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header card-chart" data-background-color="orange">
+          <img src="{{$post->photo ? $post->photo->name : '/photos/post.png'}}" style="height:200px;width:300px;" class="img-responsive img-rounded">
+        </div>
+        <div class="card-content">
+          <h4 class="title text-primary">{{$post->title}}</h4>
+          <p class="category">{{$post->body}}</p>
+        </div>
+        <div class="card-footer row">
+          <div class="stats col-md-6">
+            <i class="material-icons">access_time </i> {{$post->updated_at->diffForHumans()}}
+          </div>
+          {!! Form::open(['method'=>'DELETE','action'=>['AdminPostsController@destroy',$post->id],'class'=>'pull-right col-md-6' ]) !!}
+                {!! Form::submit('Delete Post',['class'=>'btn btn-danger btn-sm']) !!}
+          {!! Form::close() !!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
         <div class="form-group label-floating is-empty col-md-6">
             {!! Form::label('title','Post Title') !!}
             {!! Form::text('title',null,['class'=>'form-control']) !!}
@@ -48,12 +62,11 @@
         </div>
         <!-- there is an problem with the file input is that the file you are selected is not display on the input field -->
         <div class="form-group label-floating is-empty col-md-12">
-            {!! Form::submit('Update Post',['class'=>'btn btn-primary btn-lg col-md-3']) !!}
+            {!! Form::submit('Update Post',['class'=>'btn btn-primary btn-lg col-md-3','id'=>'btnUpdate']) !!}
+            {!! Form::close() !!}
         </div>
-    {!! Form::close() !!}
-
+  </div>
   </div>
 </div>
 @include('includes.formError')
-
 @stop
