@@ -41,7 +41,9 @@
           <td>{{$user->email}}</td>
           <td>{{$user->role->name}}</td>
           <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}"><b>{{$user->is_active ? "Active" : "Not Active"}}</b></td>
+          @if($user->photo)
           <td width="60" height="20"><img style="width:50px;height:50px" class="img-circle" src="{{$user->photo ? $user->photo->name : '/Photos/3.png'}}"></td>
+          @endif
           <td>{{$user->created_at->diffForHumans()}}</td>
           <td>{{$user->updated_at->diffForHumans()}}</td>
           <!-- {{$user->photo ? $user->photo->name : "Upload !!"}} this is check the condition if the user photo exist the is display the picture

@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-
+		@yield('head')
     <!--  Material Dashboard CSS    -->
     <link href="/assets/css/material-dashboard.css" rel="stylesheet"/>
 
@@ -83,17 +83,16 @@
 											<li><a href="#">Something</a></li>
 										</ul>
 	                </li>
-	                <li>
-	                    <a href="icons.html">
-	                        <i class="material-icons">bubble_chart</i>
-	                        <p>Icons</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="maps.html">
-	                        <i class="material-icons">location_on</i>
-	                        <p>Maps</p>
-	                    </a>
+									<li>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+												<i class="material-icons">bubble_chart</i>
+												<p>Media Section<b class="caret pull-right" style="margin-top:13px;"></b></p>
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="{{route('media.index')}}">Posted Pictures</a></li>
+											<li class="divider"></li>
+											<li><a href="{{route('media.upload')}}">Upload Pictures</a></li>
+										</ul>
 	                </li>
 	                <li>
 	                    <a href="notifications.html">
@@ -213,6 +212,8 @@
 
 	<!--  Google Maps Plugin    -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+	@yield('script')
 
 	<!-- Material Dashboard javascript methods -->
 	<script src="/assets/js/material-dashboard.js"></script>

@@ -48,11 +48,24 @@
           <td>{{$post->updated_at->diffForHumans()}}</td>
           <!-- {{$post->photo ? $post->photo->name : "Upload !!"}} this is check the condition if the user photo exist the is display the picture
           $post->photo check the user instance photo not !! provide any $post->photo_id //laravel automatically do this we just call the photo method and its return the photo instance. -->
+          <td><a href="#" class="like">Like</a><a href="#" class="like"> Dislike</a></td>
         </tr>
         @endforeach
         @endif
 			</tbody>
 		</table>
 </div>
+
+@stop
+
+@section('script')
+
+<script>
+  $('.like').on('click',function(event){
+    var isLike=event.target.previousElementSibling==null ? true : false;
+    console.log(isLike);
+
+  });
+</script>
 
 @stop
