@@ -29,7 +29,7 @@ Route::group(['middleware'=>'admin'],function()
 });
 
 
-
+Route::post('/like','AdminPostsController@likePost')->name('like');
 
 Route::get('/admin',function()
 {

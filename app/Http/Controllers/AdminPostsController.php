@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Auth;
+use App\Like;
 use App\Photo;
 use App\Category;
 use App\Http\Requests\CreatePostsRequest;
@@ -137,5 +138,46 @@ class AdminPostsController extends Controller
 
         return redirect('admin/posts');
 
+    }
+
+    public function likePost(Request $request)
+    {
+      $post_id=$request->postId;
+      $is_like=$request->isLike === 'true' ? "1" : "0";
+      $update=false;
+      $post=Post::findOrFail($post_id);
+      //return $post;
+      $user=Auth::user();
+      //return $user;
+      $like=$user->likes->where('post_id',$post_id)->first();
+
+      if($like)
+      {
+        $already_like=$like->like;
+        $update=true;
+        if($already_like == $is_like){
+          $like->delete();
+          return null;
+        } else {
+            $like;
+        }
+        $like->like=$is_like;
+        $like->user_id=$user->id;
+        $like->post_id=$post->id;
+        if($update){
+          $like->update();
+        }
+        else{
+          $like->save();
+        }
+        return null;
+      }
+      else{
+        $like = new Like();
+        $like->like=$is_like;
+        $like->user_id=$user->id;
+        $like->post_id=$post->id;
+        $like->save();
+      }
     }
 }

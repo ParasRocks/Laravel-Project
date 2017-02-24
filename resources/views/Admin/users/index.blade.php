@@ -35,9 +35,9 @@
 			<tbody>
         @if($users)
         @foreach($users as $user)
-        <tr>
+        <tr data-userid={}>
           <td>{{$user->id}}</td>
-          <td><a href="{{route('users.edit',$user->id)}}">{{$user->name}}</a></td>
+          <td><a href="{{route('users.edit',$user->id)}}" id="edit">{{$user->name}}</a></td>
           <td>{{$user->email}}</td>
           <td>{{$user->role->name}}</td>
           <td class="{{$user->is_active ? 'text-success' : 'text-danger'}}"><b>{{$user->is_active ? "Active" : "Not Active"}}</b></td>
@@ -55,4 +55,16 @@
 		</table>
 	</div>
 </div>
+@stop
+
+@section('script')
+
+<script>
+$(document).ready(function(){
+  $('.data-toggle').dropdown();
+
+});
+</script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
 @stop

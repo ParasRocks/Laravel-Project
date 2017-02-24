@@ -45,6 +45,11 @@ class User extends Authenticatable
       return $this->hasMany('App\Post');
     }
 
+    public function likes()
+    {
+      return $this->hasMany('App\Like');
+    }
+
     Public function getNameAttribute($name)
     {
       return ucFirst($name);

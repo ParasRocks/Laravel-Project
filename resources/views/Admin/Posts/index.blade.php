@@ -36,7 +36,7 @@
 			<tbody>
         @if($posts)
         @foreach($posts as $post)
-        <tr>
+        <tr data-postid='{{$post->id}}'>
           <td>{{$post->id}}</td>
           <td><a href="{{route('posts.edit',$post->id)}}">{{$post->user->name}}</a></td>
           <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
@@ -61,11 +61,34 @@
 @section('script')
 
 <script>
-  $('.like').on('click',function(event){
-    var isLike=event.target.previousElementSibling==null ? true : false;
-    console.log(isLike);
+  var token= '{{Session::token()}}';
+  var urlLike = "{{route('like')}}"
 
-  });
+  $('.like').on('click',function(event){
+    event.preventDefault();
+    var postId=event.target.parentNode.parentNode.dataset['postid']
+    var isLike=event.target.previousElementSibling == null ? true : false;
+    //console.log(isLike);
+    $.ajax({
+      method: 'POST',
+      url:urlLike,
+      data:{isLike: isLike,postId:postId,_token:token}
+    }).done(function(){
+      if(isLike)
+      {
+        event.target.nextElementSibling.innerText='Dislike';
+      } else{
+        event.target.previousElementSibling.innerText='Like';
+      }
+      event.target.innerText= isLike ? event.target.innerText =='like' ? 'You like it' : 'like' : event.target.innerText == 'Dislike' ? 'You don\' like it' : 'Dislike';
+
+    });
+    });
+$(document).ready(function(){
+  $('.data-toggle').dropdown();
+
+});
 </script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 @stop

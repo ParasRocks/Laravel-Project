@@ -62,3 +62,15 @@
   @include('includes.formError')
 
 @stop
+
+@section('script')
+
+<script>
+$(document).ready(function(){
+  $('.data-toggle').dropdown();
+
+});
+</script>
+<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+@stop

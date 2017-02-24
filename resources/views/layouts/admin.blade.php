@@ -10,23 +10,37 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
+		@yield('head')
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-		@yield('head')
     <!--  Material Dashboard CSS    -->
     <link href="/assets/css/material-dashboard.css" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="/assets/css/demo.css" rel="stylesheet" />
 
+		<style>
+
+							.se-pre-con {
+					position: fixed;
+					left: 0px;
+					top: 0px;
+					width: 100%;
+					height: 100%;
+					z-index: 9999;
+					background: url("/photos/gif4.gif") center no-repeat #fff;
+					}
+
+		</style>
     <!--     Fonts and icons     -->
+		<link href="/assets/css/dropzone.min.css" type="text/css" rel="stylesheet">
+
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-
+	<div class="se-pre-con"></div>
 	<div class="wrapper">
 
 	    <div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
@@ -56,9 +70,9 @@
 															<p>Users <b class="caret pull-right" style="margin-top:13px;"></b></p>
 													</a>
 													<ul class="dropdown-menu">
-														<li><a href="{{route('users.index')}}">All Users</a></li>
+														<li><a href="{{route('users.index')}}" id="all_user">All Users</a></li>
 														<li class="divider"></li>
-														<li><a href="{{route('users.create')}}">Create User</a></li>
+														<li><a href="{{route('users.create')}}" id="create_user">Create User</a></li>
 													</ul>
 	                </li>
 	                <li>
@@ -67,9 +81,9 @@
 												<p>Posts <b class="caret pull-right" style="margin-top:13px;"></b></p>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a href="{{route('posts.index')}}">All Posts</a></li>
+											<li><a href="{{route('posts.index')}}" id="all_post">All Posts</a></li>
 											<li class="divider"></li>
-											<li><a href="{{route('posts.create')}}">Create Post</a></li>
+											<li><a href="{{route('posts.create')}}" id="create_post">Create Post</a></li>
 										</ul>
 	                </li>
 									<li>
@@ -78,9 +92,8 @@
 												<p>Categories<b class="caret pull-right" style="margin-top:13px;"></b></p>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a href="{{route('categories.index')}}">Manage Categories</a></li>
+											<li><a href="{{route('categories.index')}}" id="category">Manage Categories</a></li>
 											<li class="divider"></li>
-											<li><a href="#">Something</a></li>
 										</ul>
 	                </li>
 									<li>
@@ -89,9 +102,9 @@
 												<p>Media Section<b class="caret pull-right" style="margin-top:13px;"></b></p>
 										</a>
 										<ul class="dropdown-menu">
-											<li><a href="{{route('media.index')}}">Posted Pictures</a></li>
+											<li><a href="{{route('media.index')}}" id="post_picture">Posted Pictures</a></li>
 											<li class="divider"></li>
-											<li><a href="{{route('media.upload')}}">Upload Pictures</a></li>
+											<li><a href="{{route('media.upload')}}" id="upload">Upload Pictures</a></li>
 										</ul>
 	                </li>
 	                <li>
@@ -200,7 +213,17 @@
 </body>
 
 	<!--   Core JS Files   -->
+	@yield('script')
+
+	<!-- big mistage bcz we put the @yield('script') after the bootstrap.min.js and thats why the dropdown is not work -->
+
 	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+	<script type="text/javascript">
+				$(window).load(function() {
+					$(".se-pre-con");
+					})
+</script>
 	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/assets/js/material.min.js" type="text/javascript"></script>
 
@@ -213,21 +236,105 @@
 	<!--  Google Maps Plugin    -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
-	@yield('script')
-
 	<!-- Material Dashboard javascript methods -->
+	<script src="/assets/js/dropzone.min.js"></script>
+	<link href="/assets/css/dropzone.min.css" type="text/css" rel="stylesheet">
+
+
+
 	<script src="/assets/js/material-dashboard.js"></script>
 
 	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
 	<script src="/assets/js/demo.js"></script>
-
 	<script type="text/javascript">
+
+
     	$(document).ready(function(){
 
+				$(".se-pre-con").fadeOut(2000);
+				$('body').show();
 			// Javascript method's body can be found in assets/js/demos.js
         	demo.initDashboardPageCharts();
+					$('#all_user').on('click', function (e) {
+        		e.preventDefault();
+        //alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+        $.get("{{route('users.index')}}", function (data) {
 
+						$( "body" ).html( data );
+
+        		});
     	});
+			$('#all_user').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('users.index')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+			$('#create_user').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('users.create')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+			$('#all_post').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('posts.index')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+			$('#create_post').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('posts.create')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+			$('#category').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('categories.index')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+			$('#post_picture').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('media.index')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+			$('#upload').on('click', function (e) {
+				e.preventDefault();
+				//alert("Customer ID: "$customerId+ " po id: " +$purchaseOrderId );
+				$.get("{{route('media.upload')}}", function (data) {
+
+				$( "body" ).html( data );
+
+				});
+			});
+
+    });
 	</script>
 
 </html>
